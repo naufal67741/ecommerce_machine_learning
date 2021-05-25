@@ -2,9 +2,9 @@
     <!-- Logo -->
     <a href="index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>Whi-Sky</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>Whi-Sky</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -35,7 +35,7 @@
                         Support Team
                         <small><i class="fa fa-clock-o"></i> 5 mins</small>
                       </h4>
-                      <p>Why not buy a new awesome theme?</p>
+                      <p>Whi-Sky</p>
                     </a>
                   </li>
                   <!-- end message -->
@@ -45,10 +45,10 @@
                         <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
-                        AdminLTE Design Team
+                        Whi-Sky
                         <small><i class="fa fa-clock-o"></i> 2 hours</small>
                       </h4>
-                      <p>Why not buy a new awesome theme?</p>
+                      <p>Whi-Sky</p>
                     </a>
                   </li>
                   <li>
@@ -60,7 +60,7 @@
                         Developers
                         <small><i class="fa fa-clock-o"></i> Today</small>
                       </h4>
-                      <p>Why not buy a new awesome theme?</p>
+                      <p>Whi-Sky</p>
                     </a>
                   </li>
                   <li>
@@ -72,7 +72,7 @@
                         Sales Department
                         <small><i class="fa fa-clock-o"></i> Yesterday</small>
                       </h4>
-                      <p>Why not buy a new awesome theme?</p>
+                      <p>Whi-Sky</p>
                     </a>
                   </li>
                   <li>
@@ -84,7 +84,7 @@
                         Reviewers
                         <small><i class="fa fa-clock-o"></i> 2 days</small>
                       </h4>
-                      <p>Why not buy a new awesome theme?</p>
+                      <p>Whi-Sky</p>
                     </a>
                   </li>
                 </ul>
@@ -215,13 +215,13 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{ asset('storage/images/user/'.Auth::user()->image)}}" class="user-image" alt="User Image">
+              {{-- <img src="{{ asset('storage/images/user/'.Auth::user()->image)}}" class="user-image" alt="User Image"> --}}
               <span class="hidden-xs">{{Auth::user()->name}}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="{{ asset('storage/images/user/'.Auth::user()->image)}}" class="img-circle" alt="User Image">
+                {{-- <img src="{{ asset('storage/images/user/'.Auth::user()->image)}}" class="img-circle" alt="User Image"> --}}
 
                 <p>
                   {{Auth::user()->name}} - {{Auth::user()->email}}

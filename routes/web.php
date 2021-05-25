@@ -24,6 +24,7 @@ Route::put('/cluster/update','ClusterController@update');
 
 // users
 Route::get('/user','UserController@index');
+Route::get('/user/login','UserController@login');
 Route::get('/user/create','UserController@create');
 Route::post('/user/store','UserController@store');
 Route::get('/user/edit/{id}', 'UserController@edit');
@@ -47,8 +48,11 @@ Route::get('/item/edit/{id}', 'ItemController@edit');
 Route::put('/item/update','ItemController@update');
 Route::get('/item/delete/{id}', 'ItemController@deleteStock');
 Route::put('/item/updateDeleteStock','ItemController@updateDeleteStock');
+Route::post('/set-favorite', 'UserController@setFavorite');
 
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+

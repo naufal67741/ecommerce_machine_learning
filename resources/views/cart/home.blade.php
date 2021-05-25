@@ -1,58 +1,48 @@
-@extends('layout.master')
-
-@section('contentt-header')
-<h1>
-    Cluster
-    <small>Cluster Home</small>
-  </h1>
-  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active">Dashboard</li>
-  </ol>
-@endsection
-
-@section('contentt')
-<div class="row">
-    <div class="col-md-4">
-        <a href="/checkout">
-            <button type="button" class="btn btn-block btn-primary btn-sm">CHECKOUT</button>
-        </a>
-    </div>
-</div>
-@if ($status = true)
-    <div class="row">
-    <div class="col-md-12">
-        <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Striped Full Width Table</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body no-padding">
-              <table class="table table-striped">
-                <tr>
-                  <th style="width: 10px">#</th>
-                  <th>Name</th>
-                  <th>Item Name</th>
-                  <th>Quantity</th>
-                  <th>Price</th>
-                </tr>
-                @foreach ($data as $d)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <title>Shopping Cart</title>
+</head>
+<body>
+    @include('newlayout.newnavbar')
+    <div class="container mt-5">
+        @if ($status = true)
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>#</td>
-                        <td>{{$d->name}}</td>
+                    <th scope="col">#</th>
+                    <th scope="col">Item Name</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($data as $d)
+                    <tr>
+                        <th scope="row">{{$loop->iteration}}</th>
                         <td>{{$d->item->name}}</td>
                         <td>{{$d->qty}}</td>
-                        <td>{{$d->totalPrice}}</td>
-                    </tr>
-                @endforeach
-              </table>
-            </div>
-            <!-- /.box-body -->
-          </div>
+                        <td>${{$d->totalPrice}}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+                <div class="col-md-4">
+                    <a href="/checkout">
+                        <button type="button" class="btn btn-block btn-primary btn-sm">CHECKOUT</button>
+                    </a>
+                </div>
+            @else
+                <h3>You haven't add a single drink, stop being drunk</h3>
+            @endif
     </div>
-</div>
-@else
-    <h3>You haven't add a drink</h3>
-@endif
 
-@endsection
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+</body>
+</html>

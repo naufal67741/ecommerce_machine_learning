@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Item;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +28,7 @@ class UserController extends Controller
     }
 
     public function register(){
-        return view('index/register');
+        return view('index/register2');
     }
 
     /**
@@ -51,28 +53,40 @@ class UserController extends Controller
         // dd($request->profile_image);
         // dd($request->image->getClientOriginalName());
         $user = new User();
-        $fileNameToStore='';
-        if($request->file('image')){
-            $fileNameWithExt = $request->file('image')->getClientOriginalName();
-            // dd($request->file('image'));
-            $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-            $extension = $request->file('image')->getClientOriginalExtension();
-            $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            $path = $request->file('image')->storeAs('public/images/user',$fileNameToStore);
-            // $file->move('uploads/user/profileImage',$filename);
-            // dd($filename);
-        }
-        dd($request->cluster_id);
+        // $fileNameToStore='';
+        // if($request->file('image')){
+        //     $fileNameWithExt = $request->file('image')->getClientOriginalName();
+        //     // dd($request->file('image'));
+        //     $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+        //     $extension = $request->file('image')->getClientOriginalExtension();
+        //     $fileNameToStore = $filename.'_'.time().'.'.$extension;
+        //     $path = $request->file('image')->storeAs('public/images/user',$fileNameToStore);
+        //     // $file->move('uploads/user/profileImage',$filename);
+        //     // dd($filename);
+        // }
+        // dd($request->cluster_id);
         User::create([
             'name' => $request->name,
             'email'=>   $request->email,
             'password'=>$request->password,
             'phone' => $request->phone,
-            'image' => $fileNameToStore,
-            'cluster_id' => $request->cluster_id
+            // 'image' => $fileNameToStore,
+            // 'cluster_id' => $request->cluster_id
         ]);
 
-        return redirect('user');
+        return redirect('user/login');
+    }
+
+    public function setFavorite(Request $request)
+    {
+        // dd($request);
+        $user = User::where('id','=',Auth::user()->id)->first();
+        $user->update([
+            'cluster_id' => $request->id
+        ]);
+
+        return redirect('/item/recomendation');
+
     }
 
     /**
@@ -110,20 +124,19 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $user = new User();
-        $fileNameToStore='';
-        if($request->file('image')){
-            $fileNameWithExt = $request->file('image')->getClientOriginalName();
-            // dd($request->file('image'));
-            $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-            $extension = $request->file('image')->getClientOriginalExtension();
-            $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            $path = $request->file('image')->storeAs('public/images/user',$fileNameToStore);
-        }
+        // $fileNameToStore='';
+        // if($request->file('image')){
+        //     $fileNameWithExt = $request->file('image')->getClientOriginalName();
+        //     // dd($request->file('image'));
+        //     $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+        //     $extension = $request->file('image')->getClientOriginalExtension();
+        //     $fileNameToStore = $filename.'_'.time().'.'.$extension;
+        //     $path = $request->file('image')->storeAs('public/images/user',$fileNameToStore);
+        // }
         User::where('id','=',$request->id)->update([
             'name' => $request->name,
             'phone' => $request->phone,
-            'image' => $fileNameToStore,
-            'cluster_id' => $request->cluster_id
+            // 'cluster_id' => $request->cluster_id
         ]);
         return redirect('/item');
     }

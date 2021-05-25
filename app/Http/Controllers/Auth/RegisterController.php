@@ -80,7 +80,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'phone' => request()->phone,
             'image' => $fileNameToStore,
-            'cluster_id' => request()->cluster_id
+            // 'cluster_id' => request()->cluster_id
         ]);
     }
 }

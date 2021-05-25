@@ -60,10 +60,12 @@
           <!-- /.description-block -->
         </div>
         <div class="col-sm-4">
+            @if (Auth::user()->name=='Admin')
             <div class="description-block">
                 <h5 class="description-header"><a href="/item/edit/{{$d->id}}">Add Stock</a></h5>
                 <h5 class="description-header"><a href="/item/delete/{{$d->id}}">Delete Stock</a></h5>
             </div>
+            @endif
             <!-- /.description-block -->
           </div>
 
